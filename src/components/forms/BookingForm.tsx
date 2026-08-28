@@ -78,15 +78,6 @@ export function BookingForm() {
           Preferred Time
           <input name="preferredTime" type="time" />
         </label>
-        <label>
-          Preferred Contact Method
-          <select name="contactMethod" defaultValue="">
-            <option value="" disabled>Preferred Contact Method</option>
-            <option>Phone Call</option>
-            <option>WhatsApp</option>
-            <option>Email</option>
-          </select>
-        </label>
       </div>
       <label>
         Tell us about your event or session

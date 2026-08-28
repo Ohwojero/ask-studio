@@ -47,13 +47,6 @@ export default function ContactPage() {
             <p>@ask.studios_</p>
           </div>
         </a>
-        <div className="contact-info-card">
-          <span className="contact-info-icon"><Clock size={22} /></span>
-          <div>
-            <h3>Working Hours</h3>
-            <p>Mon – Sat, 8am – 6pm</p>
-          </div>
-        </div>
       </section>
 
       {/* ── Booking Section ── */}

@@ -32,7 +32,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="footer-grid">
         <div>
-          <Image src="/images/logo.PNG" alt={site.shortName} width={110} height={72} style={{ width: 110, height: "auto" }} />
+          <Image src="/images/logo.PNG" alt={site.shortName} width={40} height={26} style={{ width: 40, height: "auto" }} />
           <p>{site.tagline}</p>
         </div>
 

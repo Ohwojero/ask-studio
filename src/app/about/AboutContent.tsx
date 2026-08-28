@@ -119,11 +119,6 @@ export function AboutContent() {
             <p>ASK Studios Limited is a creative media company dedicated to preserving life&apos;s most meaningful moments through exceptional photography, videography, drone coverage, portrait sessions, event coverage, and creative visual storytelling.</p>
             <p>Our journey began in 2021 with two independent creative brands — Studio Superior and AgbobaK Multimedia. Over the years, both brands built strong reputations for quality, professionalism, and memorable storytelling.</p>
             <p>In 2026, they joined forces under one unified identity — ASK Studios Limited — bringing together experience, creativity, and passion to serve individuals, families, organizations, and businesses with greater capacity and a shared commitment to excellence.</p>
-            <div className="about-stats">
-              <div><span>2021</span><p>Founded</p></div>
-              <div><span>2</span><p>Brands Merged</p></div>
-              <div><span>∞</span><p>Stories Told</p></div>
-            </div>
           </div>
 
           <div className="about-founder-card">
@@ -135,16 +130,6 @@ export function AboutContent() {
           </div>
         </section>
       </div>
-
-      {/* ── Parallax ── */}
-      <section className="about-parallax">
-        <div className="parallax-overlay" />
-        <div className="parallax-content">
-          <p className="eyebrow">Our Purpose</p>
-          <h2>Every frame tells a story worth keeping.</h2>
-          <p>We don&apos;t just take pictures — we craft visual legacies that outlive the moment.</p>
-        </div>
-      </section>
 
       {/* ── Mission & Vision ── */}
       <div ref={missionFade.ref} className={`fade-section ${missionFade.visible ? "fade-in-up" : ""}`}>
