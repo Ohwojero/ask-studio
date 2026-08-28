@@ -31,7 +31,7 @@ export function Header() {
   return (
     <header className={headerClass}>
       <Link href="/" className="brand" aria-label={`${site.shortName} home`}>
-        <Image src="/images/IMG_8800.PNG" alt={site.shortName} width={96} height={64} priority style={{ width: 96, height: "auto" }} />
+        <Image src="/images/IMG_8800.PNG" alt={site.shortName} width={67} height={45} priority style={{ width: 67, height: "auto" }} />
       </Link>
 
       <button className="menu-button" type="button" onClick={() => setOpen((value) => !value)} aria-label="Toggle navigation">

@@ -118,17 +118,6 @@ export function Hero({ title, eyebrow, description, ctaLabel, ctaHref, slides = 
           <ChevronRight size={20} />
         </button>
 
-        {/* Dots */}
-        <div className="carousel-dots">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              className={`carousel-dot${i === current ? " active" : ""}`}
-              onClick={() => go(i)}
-              aria-label={`Slide ${i + 1}`}
-            />
-          ))}
-        </div>
       </div>
     </section>
   );
