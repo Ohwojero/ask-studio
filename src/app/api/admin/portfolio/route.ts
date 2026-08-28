@@ -86,3 +86,93 @@ export async function POST(request: Request) {
     );
   }
 }
+
+export async function PUT(request: Request) {
+  if (!isAuthorized(request)) {
+    return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
+  try {
+    const formData = await request.formData();
+    const id = String(formData.get("id") ?? "");
+    const title = String(formData.get("title") ?? "");
+    const category = String(formData.get("category") ?? "");
+    const description = String(formData.get("description") ?? "");
+    const sortOrder = Number(formData.get("sortOrder") ?? 0);
+    const isPublished = formData.get("isPublished") === "on" || formData.get("isPublished") === "true";
+    const file = formData.get("image");
+    const existingImageUrl = String(formData.get("existingImageUrl") ?? "");
+
+    if (!id || !title || !category) {
+      return NextResponse.json({ error: "Item id, title, and category are required." }, { status: 400 });
+    }
+
+    const supabase = getSupabaseAdminClient();
+    let imageUrl = existingImageUrl || null;
+
+    if (file instanceof File && file.name) {
+      const extension = file.name.split(".").pop() || "jpg";
+      const path = `${category}/${crypto.randomUUID()}.${extension}`;
+      const upload = await supabase.storage.from("portfolio").upload(path, file, {
+        contentType: file.type,
+        upsert: false,
+      });
+
+      if (upload.error) {
+        return NextResponse.json({ error: upload.error.message }, { status: 500 });
+      }
+
+      const { data: publicUrl } = supabase.storage.from("portfolio").getPublicUrl(path);
+      imageUrl = publicUrl.publicUrl;
+    }
+
+    const { error } = await supabase.from("portfolio_items").update({
+      title,
+      category,
+      description: description || null,
+      image_url: imageUrl,
+      sort_order: Number.isFinite(sortOrder) ? sortOrder : 0,
+      is_published: isPublished,
+    }).eq("id", id);
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "Supabase is not configured." },
+      { status: 500 },
+    );
+  }
+}
+
+export async function DELETE(request: Request) {
+  if (!isAuthorized(request)) {
+    return NextResponse.json({ error: "Unauthorized." }, { status: 401 });
+  }
+
+  try {
+    const url = new URL(request.url);
+    const id = url.searchParams.get("id");
+
+    if (!id) {
+      return NextResponse.json({ error: "Item id is required." }, { status: 400 });
+    }
+
+    const supabase = getSupabaseAdminClient();
+    const { error } = await supabase.from("portfolio_items").delete().eq("id", id);
+
+    if (error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json(
+      { error: error instanceof Error ? error.message : "Supabase is not configured." },
+      { status: 500 },
+    );
+  }
+}

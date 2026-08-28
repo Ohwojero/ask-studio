@@ -3,7 +3,7 @@ export type PortfolioCategory = "portraits" | "weddings" | "baby";
 export const portfolioCategories: { key: PortfolioCategory; label: string; description: string }[] = [
   { key: "portraits", label: "Portrait Photography", description: "Studio, lifestyle, personal brand, and editorial portraits." },
   { key: "weddings", label: "Wedding Stories", description: "Traditional weddings, white weddings, and couple stories." },
-  { key: "baby", label: "Maternity & Baby", description: "Pregnancy, newborn, baby, and family sessions." },
+  { key: "baby", label: "Pregnancy Shoot & Kids", description: "Pregnancy portraits and joyful family moments with kids." },
 ];
 
 export const portfolioImages: Record<PortfolioCategory, string[]> = {

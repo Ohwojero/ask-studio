@@ -807,6 +807,33 @@ h1, h2, h3 {
   gap: 16px;
 }
 
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 44px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  color: var(--ink);
+}
+
 input,
 select,
 textarea {
@@ -892,6 +919,38 @@ textarea:focus {
   border-radius: 8px;
 }
 
+.content-item-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.content-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.mini-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.mini-button.danger {
+  border-color: rgba(181, 32, 61, 0.25);
+  color: var(--wine);
+}
+
 .content-list img {
   width: 86px;
   height: 72px;
@@ -920,6 +979,21 @@ textarea:focus {
 .dashboard-message {
   color: var(--muted);
   line-height: 1.5;
+}
+
+.dashboard-toast {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 30;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #eaf9f2, #d9f7e5);
+  border: 1px solid rgba(26, 133, 75, 0.22);
+  color: #0f5f3d;
+  font-weight: 700;
+  box-shadow: 0 16px 38px rgba(18, 89, 55, 0.16);
 }
 
 .site-footer {

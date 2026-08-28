@@ -19,8 +19,8 @@ const featuredStories = [
   },
   {
     image: portfolioImages.baby[0],
-    label: "Maternity & Baby",
-    caption: "Precious milestones frozen in time — from bump to baby, every moment matters.",
+    label: "Pregnancy Shoot & Kids",
+    caption: "Precious milestones frozen in time — from pregnancy to playful childhood, every moment matters.",
   },
   {
     image: portfolioImages.weddings[4],

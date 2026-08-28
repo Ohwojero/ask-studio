@@ -5,15 +5,34 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { X, ChevronLeft, ChevronRight, ZoomIn } from "lucide-react";
 import { portfolioCategories, portfolioImages, PortfolioCategory } from "@/data/portfolio";
+import { getSupabaseBrowserClient } from "@/lib/supabase";
 
 type Filter = "all" | PortfolioCategory;
 
-const filters: { key: Filter; label: string; count: number }[] = [
-  { key: "all", label: "All Work", count: Object.values(portfolioImages).flat().length },
-  { key: "portraits", label: "Portraits", count: portfolioImages.portraits.length },
-  { key: "weddings", label: "Weddings", count: portfolioImages.weddings.length },
-  { key: "baby", label: "Maternity & Baby", count: portfolioImages.baby.length },
-];
+type LivePortfolioItem = {
+  id: string;
+  title: string;
+  category: string;
+  description: string | null;
+  image_url: string;
+  is_published: boolean;
+  sort_order: number | null;
+};
+
+const categoryLabelMap: Record<string, string> = {
+  portraits: "Portraits",
+  weddings: "Weddings",
+  baby: "Pregnancy Shoot & Kids",
+  commercial: "Commercial",
+};
+
+const normalizeCategory = (category: string): Filter => {
+  const value = category.toLowerCase();
+  if (value.includes("portrait")) return "portraits";
+  if (value.includes("wedding")) return "weddings";
+  if (value.includes("baby") || value.includes("pregnancy") || value.includes("kid")) return "baby";
+  return "all";
+};
 
 type LightboxImage = { src: string; alt: string; allImages: string[]; index: number };
 
@@ -22,10 +41,67 @@ export function PortfolioGallery() {
   const [lightbox, setLightbox] = useState<LightboxImage | null>(null);
   const [animating, setAnimating] = useState(false);
   const [gridKey, setGridKey] = useState(0);
+  const [liveItems, setLiveItems] = useState<LivePortfolioItem[]>([]);
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadLiveItems() {
+      try {
+        const client = getSupabaseBrowserClient();
+        const { data, error } = await client
+          .from("portfolio_items")
+          .select("*")
+          .eq("is_published", true)
+          .order("sort_order", { ascending: true, nullsFirst: false })
+          .order("created_at", { ascending: false });
+
+        if (!active || error) return;
+        setLiveItems(data ?? []);
+      } catch (error) {
+        if (active) {
+          setLiveItems([]);
+        }
+      }
+    }
+
+    loadLiveItems();
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const liveImages = liveItems
+    .filter((item) => item.image_url)
+    .map((item) => ({
+      src: item.image_url,
+      category: categoryLabelMap[item.category] ?? item.title,
+      key: normalizeCategory(item.category),
+    }));
+
+  const filterCounts = {
+    all: Object.values(portfolioImages).flat().length + liveImages.length,
+    portraits: portfolioImages.portraits.length + liveImages.filter((item) => item.key === "portraits").length,
+    weddings: portfolioImages.weddings.length + liveImages.filter((item) => item.key === "weddings").length,
+    baby: portfolioImages.baby.length + liveImages.filter((item) => item.key === "baby").length,
+  };
+
+  const filters: { key: Filter; label: string; count: number }[] = [
+    { key: "all", label: "All Work", count: filterCounts.all },
+    { key: "portraits", label: "Portraits", count: filterCounts.portraits },
+    { key: "weddings", label: "Weddings", count: filterCounts.weddings },
+    { key: "baby", label: "Pregnancy Shoot & Kids", count: filterCounts.baby },
+  ];
 
   const allImages = active === "all"
-    ? portfolioCategories.flatMap((c) => portfolioImages[c.key].map((src) => ({ src, category: c.label })))
-    : portfolioImages[active].map((src) => ({ src, category: filters.find(f => f.key === active)?.label ?? "" }));
+    ? [
+        ...portfolioCategories.flatMap((c) => portfolioImages[c.key].map((src) => ({ src, category: c.label, key: c.key }))),
+        ...liveImages,
+      ]
+    : [
+        ...portfolioImages[active].map((src) => ({ src, category: filters.find((f) => f.key === active)?.label ?? "", key: active })),
+        ...liveImages.filter((item) => item.key === active),
+      ];
 
   const handleFilter = (key: Filter) => {
     if (key === active) return;
