@@ -116,7 +116,6 @@ export function AboutContent() {
 
           <div className="about-story-text">
             <p className="eyebrow">Our Story</p>
-            <h2>Two Brands. One Vision.</h2>
             <p>ASK Studios Limited is a creative media company dedicated to preserving life&apos;s most meaningful moments through exceptional photography, videography, drone coverage, portrait sessions, event coverage, and creative visual storytelling.</p>
             <p>Our journey began in 2021 with two independent creative brands — Studio Superior and AgbobaK Multimedia. Over the years, both brands built strong reputations for quality, professionalism, and memorable storytelling.</p>
             <p>In 2026, they joined forces under one unified identity — ASK Studios Limited — bringing together experience, creativity, and passion to serve individuals, families, organizations, and businesses with greater capacity and a shared commitment to excellence.</p>

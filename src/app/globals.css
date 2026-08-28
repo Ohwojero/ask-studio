@@ -80,6 +80,13 @@ h1, h2, h3 {
   object-fit: contain;
 }
 
+@media (max-width: 560px) {
+  .brand img {
+    width: 72px;
+    height: auto;
+  }
+}
+
 .site-nav {
   display: flex;
   align-items: center;
@@ -1972,12 +1979,7 @@ textarea:focus {
   .menu-button { display: inline-flex; }
 
   .contact-hero,
-  .portfolio-hero { background-attachment: scroll; }
-  .contact-info-strip { grid-template-columns: repeat(2, minmax(0,1fr)); }
-  .contact-booking { grid-template-columns: 1fr; }
-  .contact-booking-left { border-right: none; border-bottom: 1px solid var(--line); }
-  .portfolio-masonry { columns: 2; }
-
+  .portfolio-hero,
   .parallax-who,
   .about-parallax,
   .about-why-parallax,
@@ -1985,6 +1987,11 @@ textarea:focus {
   .svc-why-parallax {
     background-attachment: scroll;
   }
+
+  .contact-info-strip { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .contact-booking { grid-template-columns: 1fr; }
+  .contact-booking-left { border-right: none; border-bottom: 1px solid var(--line); }
+  .portfolio-masonry { columns: 2; }
 
   .svc-grid-2,
   .svc-grid-3,
@@ -2088,8 +2095,45 @@ textarea:focus {
 
 
 @media (max-width: 560px) {
-  .hero-split { grid-template-rows: auto 72vw; }
-  .hero-text h1 { font-size: 38px; }
+  .hero-split {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .hero-text {
+    padding: 36px 18px 20px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+    line-height: 1.08;
+  }
+
+  .hero-text > p {
+    max-width: 100%;
+    margin: 18px 0 22px;
+    font-size: 15px;
+  }
+
+  .hero-carousel {
+    min-height: 72vw;
+  }
+
+  .carousel-caption {
+    padding: 18px 18px 16px;
+  }
+
+  .carousel-dots {
+    bottom: 88px;
+  }
+
+  .carousel-btn {
+    width: 34px;
+    height: 34px;
+  }
 
   .form-grid,
   .portfolio-preview,

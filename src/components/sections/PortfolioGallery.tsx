@@ -70,14 +70,6 @@ export function PortfolioGallery() {
           <h1>Every Frame,<br />A Timeless Story.</h1>
           <p>Discover our favourite moments captured through creativity, passion and visual storytelling.</p>
         </div>
-        <div className="portfolio-hero-stats">
-          {filters.slice(1).map((f) => (
-            <div key={f.key} className="portfolio-stat">
-              <span>{f.count}+</span>
-              <p>{f.label}</p>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* ── Filter Tabs ── */}

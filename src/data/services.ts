@@ -64,7 +64,7 @@ export const serviceGroups = [
         description: "Cinematic wedding films that preserve every emotion.",
         image: "/images/weddings/wedding4.jpeg",
         icon: Clapperboard,
-        video: "https://your-cloud-storage.com/wedding-highlight.mp4",
+        video: "https://drive.google.com/file/d/1JH1xY9eeky1EN58p2qAntDx8JsrqEXdt/preview",
       },
       {
         title: "Commercial Video Production",
