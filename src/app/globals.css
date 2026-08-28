@@ -82,7 +82,7 @@ h1, h2, h3 {
 
 @media (max-width: 560px) {
   .brand img {
-    width: 72px;
+    width: 40px;
     height: auto;
   }
 }
@@ -2120,6 +2120,11 @@ textarea:focus {
 
   .hero-carousel {
     min-height: 72vw;
+  }
+
+  .hero-carousel-img img {
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.08);
   }
 
   .carousel-caption {

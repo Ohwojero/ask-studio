@@ -127,7 +127,7 @@ export function AboutContent() {
           </div>
 
           <div className="about-founder-card">
-            <Image src="/images/portraits/portraits8.jpeg" alt="Kingsley Chukwuka Agboba" width={520} height={640} />
+            <Image src="/images/portraits/kingsley.jpg.jpeg" alt="Kingsley Chukwuka Agboba" width={520} height={640} />
             <div className="about-founder-info">
               <h3>Kingsley Chukwuka Agboba</h3>
               <p>Co-Founder &amp; Creative Director</p>
