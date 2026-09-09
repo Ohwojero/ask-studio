@@ -9,6 +9,7 @@
   --wine: #7b112a;
   --rose: #d4145a;
   --gold: #c79b52;
+  --card-dark: #0d1d2f;
 }
 
 * { box-sizing: border-box; }
@@ -998,7 +999,7 @@ textarea:focus {
 
 .site-footer {
   padding: 48px clamp(20px, 6vw, 80px) 20px;
-  background: #7b112a;
+  background: var(--wine);
   color: white;
 }
 
@@ -1078,6 +1079,11 @@ textarea:focus {
   overflow: hidden;
 }
 
+.about-hero-centered {
+  grid-template-columns: 1fr;
+  place-items: center;
+}
+
 .about-hero-overlay {
   display: none;
 }
@@ -1086,6 +1092,8 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  text-align: center;
   padding: clamp(48px, 8vw, 96px) clamp(24px, 5vw, 72px);
   color: white;
 }
@@ -1829,7 +1837,7 @@ textarea:focus {
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  background: var(--ink);
+  background: var(--card-dark);
   border: 1px solid rgba(255,255,255,.08);
   cursor: pointer;
   transition: transform .45s cubic-bezier(.03,.98,.52,.99), box-shadow .45s ease;

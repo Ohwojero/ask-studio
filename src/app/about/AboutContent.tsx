@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRef, MouseEvent, useEffect, useState, ReactNode } from "react";
+import { useRef, useEffect, useState, ReactNode } from "react";
 import { useFadeIn } from "@/components/sections/useFadeIn";
 
 function ScrollOutCard({ children, delay = 0, accent = false }: { children: ReactNode; delay?: number; accent?: boolean }) {
@@ -50,38 +50,6 @@ const whyUs = [
   "Exceptional Client Experience",
 ];
 
-function Portrait3D() {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const glareRef = useRef<HTMLDivElement>(null);
-
-  const onMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    const card = cardRef.current;
-    const glare = glareRef.current;
-    if (!card || !glare) return;
-    const { left, top, width, height } = card.getBoundingClientRect();
-    const x = (e.clientX - left) / width;
-    const y = (e.clientY - top) / height;
-    card.style.transform = `perspective(900px) rotateX(${(y - 0.5) * -18}deg) rotateY(${(x - 0.5) * 18}deg) scale3d(1.03,1.03,1.03)`;
-    glare.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,255,255,0.18) 0%, transparent 65%)`;
-  };
-
-  const onMouseLeave = () => {
-    const card = cardRef.current;
-    const glare = glareRef.current;
-    if (!card || !glare) return;
-    card.style.transform = `perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)`;
-    glare.style.background = "transparent";
-  };
-
-  return (
-    <div ref={cardRef} className="about-portrait-3d" onMouseMove={onMouseMove} onMouseLeave={onMouseLeave}>
-      <Image src="/images/portraits/portraits8.jpeg" alt="ASK Studios portrait work" width={560} height={720} />
-      <div ref={glareRef} className="tilt-glare" />
-      <div className="about-portrait-badge">Our Work</div>
-    </div>
-  );
-}
-
 export function AboutContent() {
   const storyFade   = useFadeIn();
   const missionFade = useFadeIn();
@@ -91,15 +59,12 @@ export function AboutContent() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="about-hero">
+      <section className="about-hero about-hero-centered">
         <div className="about-hero-content">
           <p className="eyebrow">About ASK Studios</p>
           <h1>Where Creativity<br />Meets Excellence.</h1>
           <p>A creative media company dedicated to preserving life&apos;s most meaningful moments.</p>
           <Link href="/contact" className="button">Book a Session</Link>
-        </div>
-        <div className="about-hero-right">
-          <Portrait3D />
         </div>
       </section>
 

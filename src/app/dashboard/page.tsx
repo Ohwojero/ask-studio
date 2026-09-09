@@ -147,7 +147,7 @@ export default function DashboardPage() {
       form.set("id", editingItemId);
     }
 
-    const existingImageUrl = (isEditing && items.find((item) => item.id === editingItemId)?.image_url) ?? "";
+    const existingImageUrl = isEditing ? (items.find((item) => item.id === editingItemId)?.image_url ?? "") : "";
     if (isEditing) {
       form.set("existingImageUrl", existingImageUrl);
     }

@@ -17,14 +17,9 @@ export const serviceGroups = [
         image: "/images/baby/baby2.jpeg",
         icon: Heart,
       },
+
       {
-        title: "Pregnancy & Kids",
-        description: "Gentle, heartwarming portraits celebrating every precious stage of family life — from pregnancy to playful childhood moments.",
-        image: "/images/baby/baby1.jpg",
-        icon: Heart,
-      },
-      {
-        title: "Corporate Headshots",
+        title: "Weddings",
         description: "Professional portraits designed for executives, entrepreneurs, brands and businesses.",
         image: "/images/weddings/wedding3.jpeg",
         icon: Users,

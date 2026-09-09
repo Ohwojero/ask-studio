@@ -47,9 +47,6 @@ export function Header() {
             </Link>
           );
         })}
-        <Link href="/dashboard" className={pathname.startsWith("/dashboard") ? "active nav-admin" : "nav-admin"} onClick={() => setOpen(false)}>
-          Dashboard
-        </Link>
       </nav>
     </header>
   );
