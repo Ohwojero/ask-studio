@@ -20,7 +20,7 @@ export const serviceGroups = [
 
       {
         title: "Weddings",
-        description: "Professional portraits designed for executives, entrepreneurs, brands and businesses.",
+        description: "Timeless wedding photography that beautifully captures your love, emotions, and unforgettable moments.",
         image: "/images/weddings/wedding3.jpeg",
         icon: Users,
       },
